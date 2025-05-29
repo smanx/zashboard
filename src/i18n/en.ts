@@ -1,5 +1,9 @@
+import AppEn from '@/shared/i18n/en.js'
+
 const en = {
+  ...AppEn,
   setup: 'Setup',
+  config: 'Config',
   overview: 'Overview',
   proxies: 'Proxies',
   rules: 'Rules',
@@ -175,6 +179,7 @@ const en = {
   remoteAddress: 'Remote Address',
   themeName: 'Theme Name',
   save: 'Save',
+  unsaved: 'Unsaved',
   moreDetails: 'More Details',
   customIcon: 'Custom Icon',
   disablePullToRefresh: 'Disable Pull to Refresh',
@@ -223,6 +228,43 @@ const en = {
   autoImportFromUrl: 'Auto Import',
   autoImportFromUrlTip:
     'When enabled, settings will be automatically imported from the URL when opening zashboard. If the hash differs from the last imported hash, settings will be re-imported and the page will be refreshed.',
+  coreStartupLogs: 'Core Startup Logs',
+  starting: 'Starting',
+  startupFailed: 'Startup Failed',
+  waitingForLogs: 'Waiting for logs...',
+  logCount: 'Log Count: {count}',
+  clear: 'Clear',
+  title: 'Pantheon',
+  subtitle: 'Proxy Manager',
+  profiles: 'Profiles',
+  downloadProfile: 'Download Profile',
+  importProfile: 'Import Profile',
+  importFromLocalFile: 'Import From Local File',
+  subscriptionURL: 'Subscription URL',
+  coreStatus: 'Core Status',
+  autoLaunch: 'Auto Launch',
+  installBinary: 'Install Binary',
+  uninstallBinary: 'Uninstall Binary',
+  saveSuccess: 'Save Success',
+  binaryInstallRequired: 'Binary Installation Required',
+  binaryInstallDescription:
+    'To ensure the application runs properly, we need to install necessary binary files. Please click the button below to continue with the installation.',
+  installNow: 'Install Now',
+  addProfile: 'Add Profile',
+  editProfile: 'Edit Profile',
+  createEmptyProfile: 'Create Empty Profile',
+  profileName: 'Profile Name',
+  create: 'Create',
+  systemProxy: 'System Proxy',
+  profileUpdated: 'Profile updated successfully',
+  profileUpdateFailed: 'Profile update failed',
+  updateInterval: 'Update Interval',
+  autoUpdate: 'Auto Update',
+  delete: 'Delete',
+  deleteProfile: 'Delete Profile',
+  deleteProfileConfirm:
+    'Are you sure you want to delete profile "{name}"? This action cannot be undone.',
+  clearRuntimeDir: 'Clear Runtime Directory',
 }
 
 export type LANG_MESSAGE = typeof en
