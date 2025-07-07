@@ -15,7 +15,7 @@ import {
   TEST_URL,
   type THEME,
 } from '@renderer/constant'
-import { getMinCardWidth, isMiddleScreen, isPreferredDark } from '@renderer/helper/utils'
+import { getMinCardWidth, isPreferredDark } from '@renderer/helper/utils'
 import type { SourceIPLabel } from '@renderer/types'
 import { useStorage } from '@vueuse/core'
 import { isEmpty } from 'lodash-es'
@@ -63,19 +63,7 @@ export const language = useStorage<LANG>(
     ? (navigator.language as LANG)
     : LANG.EN_US,
 )
-export const isSidebarCollapsedConfig = useStorage('config/is-sidebar-collapsed', true)
-export const isSidebarCollapsed = computed({
-  get: () => {
-    if (isMiddleScreen.value) {
-      return true
-    }
 
-    return isSidebarCollapsedConfig.value
-  },
-  set: (value) => {
-    isSidebarCollapsedConfig.value = value
-  },
-})
 export const font = useStorage<FONTS>('config/font', FONTS.MI_SANS)
 export const customBackgroundURL = useStorage('config/custom-background-image', '')
 export const dashboardTransparent = useStorage('config/dashboard-transparent', 90)
