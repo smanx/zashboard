@@ -1,4 +1,3 @@
-import { isCoreRunning } from '@/renderer/src/store/status'
 import { useNotification } from '@renderer/composables/notification'
 import { NOT_CONNECTED, PROXY_CHAIN_DIRECTION, PROXY_TYPE, ROUTE_NAME } from '@renderer/constant'
 import { timeSaved } from '@renderer/store/overview'
@@ -10,6 +9,7 @@ import {
   proxyChainDirection,
   splitOverviewPage,
 } from '@renderer/store/settings'
+import { isCoreRunning } from '@renderer/store/status'
 import type { Connection } from '@renderer/types'
 import dayjs from 'dayjs'
 import * as ipaddr from 'ipaddr.js'
