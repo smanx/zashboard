@@ -2,8 +2,6 @@
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed, onMounted, ref, watch } from 'vue'
 import { RouterView } from 'vue-router'
-import BinaryInstallModal from './components/modals/BinaryInstallModal.vue'
-import { useBinary } from './composables/binary'
 import { useKeyboard } from './composables/keyboard'
 import { useNotification } from './composables/notification'
 import { FONTS } from './constant'
@@ -20,7 +18,6 @@ import {
 
 const app = ref<HTMLElement>()
 const { tipContent, tipShowModel, tipType } = useNotification()
-const { showBinaryInstallModal, checkAndInstallBinary, handleBinaryInstallConfirm } = useBinary()
 const fontClassMap = {
   [FONTS.MI_SANS]: 'font-MiSans',
   [FONTS.SARASA_UI]: 'font-SarasaUI',
@@ -72,9 +69,6 @@ onMounted(() => {
       immediate: true,
     },
   )
-
-  // 检查二进制安装状态
-  checkAndInstallBinary()
 })
 
 const blurClass = computed(() => {
@@ -119,10 +113,5 @@ useKeyboard()
         </button>
       </div>
     </div>
-
-    <BinaryInstallModal
-      v-if="showBinaryInstallModal"
-      @confirm="handleBinaryInstallConfirm"
-    />
   </div>
 </template>
