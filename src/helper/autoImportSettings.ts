@@ -57,5 +57,4 @@ export const importSettingsFromUrl = async () => {
     }
     localStorage.setItem(key, settings[key] as string)
   }
-  location.reload()
 }
