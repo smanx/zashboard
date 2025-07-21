@@ -98,10 +98,10 @@ useKeyboard()
     <RouterView />
     <div
       v-if="tipShowModel"
-      class="toast-sm toast toast-end toast-top z-50 max-w-64 text-sm md:translate-y-8"
+      class="toast-sm toast toast-end toast-top z-50 max-w-128 text-sm md:translate-y-8"
     >
       <div
-        class="breaks-all alert flex p-2 pr-5 whitespace-normal"
+        class="alert flex p-2 pr-5 break-all whitespace-normal"
         :class="tipType"
       >
         {{ tipContent }}
