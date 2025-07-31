@@ -2,6 +2,21 @@
 
 # Changelog
 
+## [1.101.0](https://github.com/Zephyruso/zashboard/compare/v1.100.0...v1.101.0) (2025-07-31)
+
+
+### Features
+
+* channel selector for core upgrade ([b181dd1](https://github.com/Zephyruso/zashboard/commit/b181dd1aeef80fbb2c9f648477afce3ed06b1886))
+
+
+### Bug Fixes
+
+* backend api buttons grid style ([375ab8e](https://github.com/Zephyruso/zashboard/commit/375ab8ee8ca1745d9a40cf7c035bcdf701c1a187))
+* collapse animation ([8453456](https://github.com/Zephyruso/zashboard/commit/8453456412e7af5e2378fc6e0a027656844dfc13))
+* force import settings ([e7ce551](https://github.com/Zephyruso/zashboard/commit/e7ce55108ef952ff1eed637baf9a67575243af61))
+* proxies scroll style ([96389aa](https://github.com/Zephyruso/zashboard/commit/96389aacdfbe055cd82e9678c0ca14199f2b6157))
+
 ## [1.100.0](https://github.com/Zephyruso/zashboard/compare/v1.99.0...v1.100.0) (2025-07-27)
 
 
