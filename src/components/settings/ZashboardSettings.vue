@@ -67,7 +67,22 @@
             v-model="font"
           >
             <option
-              v-for="opt in Object.values(FONTS)"
+              v-for="opt in fontOptions"
+              :key="opt"
+              :value="opt"
+            >
+              {{ opt }}
+            </option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          Emoji
+          <select
+            class="select select-sm w-48"
+            v-model="emoji"
+          >
+            <option
+              v-for="opt in Object.values(EMOJIS)"
               :key="opt"
               :value="opt"
             >
@@ -135,10 +150,7 @@
             />
           </div>
         </template>
-        <div
-          class="flex items-center gap-2"
-          v-if="!isSingBox || displayAllFeatures"
-        >
+        <div class="flex items-center gap-2">
           {{ $t('autoUpgrade') }}
           <input
             class="toggle"
@@ -148,15 +160,13 @@
         </div>
       </div>
       <div class="grid max-w-3xl grid-cols-2 gap-2 sm:grid-cols-4">
-        <template v-if="!isSingBox || displayAllFeatures">
-          <button
-            :class="twMerge('btn btn-primary btn-sm', isUIUpgrading ? 'animate-pulse' : '')"
-            @click="handlerClickUpgradeUI"
-          >
-            {{ $t('upgradeUI') }}
-          </button>
-          <div class="sm:hidden"></div>
-        </template>
+        <button
+          :class="twMerge('btn btn-primary btn-sm', isUIUpgrading ? 'animate-pulse' : '')"
+          @click="handlerClickUpgradeUI"
+        >
+          {{ $t('upgradeUI') }}
+        </button>
+        <div class="sm:hidden"></div>
 
         <button
           class="btn btn-sm"
@@ -171,10 +181,10 @@
 </template>
 
 <script setup lang="ts">
-import { isSingBox, upgradeUIAPI, zashboardVersion } from '@/api'
+import { upgradeUIAPI, zashboardVersion } from '@/api'
 import LanguageSelect from '@/components/settings/LanguageSelect.vue'
 import { useSettings } from '@/composables/settings'
-import { FONTS } from '@/constant'
+import { EMOJIS, FONTS } from '@/constant'
 import { handlerUpgradeSuccess } from '@/helper'
 import { deleteBase64FromIndexedDB, LOCAL_IMAGE, saveBase64ToIndexedDB } from '@/helper/indexeddb'
 import { exportSettings, isPWA } from '@/helper/utils'
@@ -186,7 +196,7 @@ import {
   darkTheme,
   dashboardTransparent,
   defaultTheme,
-  displayAllFeatures,
+  emoji,
   font,
 } from '@/store/settings'
 import {
@@ -196,7 +206,7 @@ import {
   PlusIcon,
 } from '@heroicons/vue/24/outline'
 import { twMerge } from 'tailwind-merge'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ImportSettings from '../common/ImportSettings.vue'
 import TextInput from '../common/TextInput.vue'
 import CustomTheme from './CustomTheme.vue'
@@ -231,6 +241,16 @@ const handlerFileChange = (e: Event) => {
   }
   reader.readAsDataURL(file)
 }
+
+const fontOptions = computed(() => {
+  const mode = import.meta.env.MODE
+
+  if (Object.values(FONTS).includes(mode as FONTS)) {
+    return [mode]
+  }
+
+  return Object.values(FONTS)
+})
 
 const { isUIUpdateAvailable } = useSettings()
 

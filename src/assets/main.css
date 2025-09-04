@@ -7,11 +7,17 @@
 }
 
 @theme {
-  --font-MiSans: 'MiSans-VF', 'NotoEmoji', system-ui;
-  --font-SarasaUI: 'SarasaUiSC-Regular', 'NotoEmoji', system-ui;
-  --font-PingFang: 'PingFangSC-Regular', 'NotoEmoji', system-ui;
-  --font-FiraSans: 'Fira Sans', 'NotoEmoji', system-ui;
-  --font-SystemUI: 'NotoEmoji', system-ui;
+  --font-MiSans-NotoEmoji: 'MiSans-VF', 'NotoEmoji', system-ui;
+  --font-SarasaUI-NotoEmoji: 'SarasaUiSC-Regular', 'NotoEmoji', system-ui;
+  --font-PingFang-NotoEmoji: 'PingFangSC-Regular', 'NotoEmoji', system-ui;
+  --font-FiraSans-NotoEmoji: 'Fira Sans', 'NotoEmoji', system-ui;
+  --font-SystemUI-NotoEmoji: 'NotoEmoji', system-ui;
+
+  --font-MiSans-Twemoji: 'MiSans-VF', 'Twemoji', system-ui;
+  --font-SarasaUI-Twemoji: 'SarasaUiSC-Regular', 'Twemoji', system-ui;
+  --font-PingFang-Twemoji: 'PingFangSC-Regular', 'Twemoji', system-ui;
+  --font-FiraSans-Twemoji: 'Fira Sans', 'Twemoji', system-ui;
+  --font-SystemUI-Twemoji: 'Twemoji', system-ui;
 }
 
 @layer utilities {
@@ -21,6 +27,12 @@
   }
 }
 
+@layer utilities {
+  @font-face {
+    font-family: 'Twemoji';
+    src: url('./TwemojiMozilla-flags.woff2') format('woff2');
+  }
+}
 @utility card {
   @apply bg-base-100 rounded-lg shadow-md;
   .card-body {
@@ -34,6 +46,10 @@
 
 .collapse.transparent-collapse {
   @apply bg-transparent! shadow-none! backdrop-blur-none!;
+}
+
+@utility badge {
+  @apply bg-base-200/80;
 }
 
 @utility select {
@@ -88,6 +104,10 @@
     .toggle,
     .tabs {
       @apply bg-base-100/$(i);
+    }
+
+    .badge {
+      @apply bg-base-200/$(i) border-base-200/$(i);
     }
 
     option,

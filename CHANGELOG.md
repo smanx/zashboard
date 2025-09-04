@@ -2,6 +2,69 @@
 
 # Changelog
 
+## [1.103.0](https://github.com/Zephyruso/zashboard/compare/v1.102.0...v1.103.0) (2025-08-31)
+
+
+### Features
+
+* build with only one font ([fcb5592](https://github.com/Zephyruso/zashboard/commit/fcb559216fa6ef517bb9fbf3dc6c0f04d5060ed3))
+* display final outbound in proxy group ([e974d50](https://github.com/Zephyruso/zashboard/commit/e974d50f7cd8a0bacb404ca9a0de01087cbd1d77))
+
+
+### Bug Fixes
+
+* build release ([f6abc58](https://github.com/Zephyruso/zashboard/commit/f6abc58be3dc603692c4c426a849b7746f23fab0))
+* set history after latency test ([cee66f8](https://github.com/Zephyruso/zashboard/commit/cee66f8ecca239b388e1133e7bead2d9a9503785))
+* style for vertical info ([82c390c](https://github.com/Zephyruso/zashboard/commit/82c390c22a5bcab86b890802631aadec05a42e37))
+* twemoji color on ios ([b533a17](https://github.com/Zephyruso/zashboard/commit/b533a1757d6e7079f71a98390d45fc11cf8070f8))
+
+## [1.102.0](https://github.com/Zephyruso/zashboard/compare/v1.101.1...v1.102.0) (2025-08-15)
+
+
+### Features
+
+* add gh-pages-cdn-fonts branch ([899c1d0](https://github.com/Zephyruso/zashboard/commit/899c1d0a1e0af4ab807e90724c8cea7c434cfba1))
+* add toast for backend API call ([07833ba](https://github.com/Zephyruso/zashboard/commit/07833ba696865c9e54cce655a383a94da58e7ec0))
+* flush dns cache for sing-box ([acdee6f](https://github.com/Zephyruso/zashboard/commit/acdee6f4eb587cb4f66a802588f757ee58cb6806))
+* rule card style ([b0a421f](https://github.com/Zephyruso/zashboard/commit/b0a421f867512fbadc60eed3aaa12d326375b4cb))
+* style for proxy group ([b1de8f6](https://github.com/Zephyruso/zashboard/commit/b1de8f68eece3d767f66af577516e778c1141a62))
+* use twemoji for apple device ([5a7a6ff](https://github.com/Zephyruso/zashboard/commit/5a7a6ff804fb0f5ff8c6f4da452db94b8beb6971))
+
+
+### Bug Fixes
+
+* add default test turl ([be21958](https://github.com/Zephyruso/zashboard/commit/be21958e53024ee53996a3aa9e19593208041a21))
+* animation performance for proxy group mobile ([8547702](https://github.com/Zephyruso/zashboard/commit/85477025fa372705b7360567f585dc08e87f3f43))
+* placeholder for ip check failed ([e3a5aa3](https://github.com/Zephyruso/zashboard/commit/e3a5aa3c46ded51219d2be9d6083903ecc73b2a5))
+
+## [1.101.1](https://github.com/Zephyruso/zashboard/compare/v1.101.0...v1.101.1) (2025-08-11)
+
+
+### Bug Fixes
+
+* add timestamp for geoip api ([82258a9](https://github.com/Zephyruso/zashboard/commit/82258a9432bc22d2b2cccbdde50abde73545b60a))
+* add tip for mmdb file size ([e71aa4c](https://github.com/Zephyruso/zashboard/commit/e71aa4c49ff93ffb5ab34917d6010b4c6c46bbec))
+* tip for latency test failed ([47196a8](https://github.com/Zephyruso/zashboard/commit/47196a80215e430d1f3cd2b242bf86d881f2b8db))
+* tip position for import config ([6caf07c](https://github.com/Zephyruso/zashboard/commit/6caf07cb3d230da0efcb62227f1453e8ea6e76ad))
+
+## [1.101.0](https://github.com/Zephyruso/zashboard/compare/v1.100.0...v1.101.0) (2025-08-05)
+
+
+### Features
+
+* adaptation for sing-box ui upgrade API ([8f35a14](https://github.com/Zephyruso/zashboard/commit/8f35a14189057d693c66d0c575e95db0d3d52722))
+* channel selector for core upgrade ([b181dd1](https://github.com/Zephyruso/zashboard/commit/b181dd1aeef80fbb2c9f648477afce3ed06b1886))
+* check update for `mihomo_smart`'s fork ([#461](https://github.com/Zephyruso/zashboard/issues/461)) ([0a48f44](https://github.com/Zephyruso/zashboard/commit/0a48f4411c81ee742434907d66ee664497df67d4))
+* log card style ([ecaaea7](https://github.com/Zephyruso/zashboard/commit/ecaaea7a33af5f489198af74347da61b6b2b2029))
+
+
+### Bug Fixes
+
+* backend api buttons grid style ([375ab8e](https://github.com/Zephyruso/zashboard/commit/375ab8ee8ca1745d9a40cf7c035bcdf701c1a187))
+* collapse animation ([8453456](https://github.com/Zephyruso/zashboard/commit/8453456412e7af5e2378fc6e0a027656844dfc13))
+* force import settings ([e7ce551](https://github.com/Zephyruso/zashboard/commit/e7ce55108ef952ff1eed637baf9a67575243af61))
+* proxies scroll style ([96389aa](https://github.com/Zephyruso/zashboard/commit/96389aacdfbe055cd82e9678c0ca14199f2b6157))
+
 ## [1.100.0](https://github.com/Zephyruso/zashboard/compare/v1.99.0...v1.100.0) (2025-07-27)
 
 

@@ -27,7 +27,7 @@
     <div class="card-body gap-4">
       <BackendSwitch />
 
-      <template v-if="(!isSingBox || displayAllFeatures) && configs">
+      <template v-if="!isSingBox && configs">
         <div class="divider"></div>
         <div class="grid max-w-3xl grid-cols-2 gap-2 lg:grid-cols-3">
           <div
@@ -94,8 +94,12 @@
       </template>
 
       <div
-        class="grid max-w-6xl grid-cols-2 gap-2"
-        :class="hasSmartGroup ? 'md:grid-cols-4 xl:grid-cols-7' : 'md:grid-cols-3 xl:grid-cols-6'"
+        class="grid max-w-3xl grid-cols-2 gap-2"
+        :class="
+          hasSmartGroup
+            ? 'md:grid-cols-4 xl:max-w-6xl xl:grid-cols-7'
+            : 'md:grid-cols-3 xl:max-w-6xl xl:grid-cols-6'
+        "
       >
         <template v-if="!isSingBox || displayAllFeatures">
           <button
@@ -135,16 +139,16 @@
             ></span>
             {{ $t('updateGeoDatabase') }}
           </button>
-          <button
-            class="btn btn-sm"
-            @click="flushDNSCacheAPI"
-          >
-            {{ $t('flushDNSCache') }}
-          </button>
         </template>
         <button
           class="btn btn-sm"
-          @click="flushFakeIPAPI"
+          @click="handleFlushDNSCache"
+        >
+          {{ $t('flushDNSCache') }}
+        </button>
+        <button
+          class="btn btn-sm"
+          @click="handleFlushFakeIP"
         >
           {{ $t('flushFakeIP') }}
         </button>
@@ -177,6 +181,7 @@ import {
 import BackendVersion from '@/components/common/BackendVersion.vue'
 import BackendSwitch from '@/components/settings/BackendSwitch.vue'
 import DnsQuery from '@/components/settings/DnsQuery.vue'
+import { showNotification } from '@/helper/notification'
 import { configs, fetchConfigs, updateConfigs } from '@/store/config'
 import { fetchProxies, hasSmartGroup } from '@/store/proxies'
 import { fetchRules } from '@/store/rules'
@@ -227,6 +232,10 @@ const handlerClickRestartCore = async () => {
       reloadAll()
     }, 500)
     isCoreRestarting.value = false
+    showNotification({
+      content: 'restartCoreSuccess',
+      type: 'alert-success',
+    })
   } catch {
     isCoreRestarting.value = false
   }
@@ -240,6 +249,10 @@ const handlerClickReloadConfigs = async () => {
     await reloadConfigsAPI()
     reloadAll()
     isConfigReloading.value = false
+    showNotification({
+      content: 'reloadConfigsSuccess',
+      type: 'alert-success',
+    })
   } catch {
     isConfigReloading.value = false
   }
@@ -253,6 +266,10 @@ const handlerClickUpdateGeo = async () => {
     await updateGeoDataAPI()
     reloadAll()
     isGeoUpdating.value = false
+    showNotification({
+      content: 'updateGeoSuccess',
+      type: 'alert-success',
+    })
   } catch {
     isGeoUpdating.value = false
   }
@@ -270,5 +287,21 @@ const hanlderTunModeChange = async () => {
 }
 const handlerAllowLanChange = async () => {
   await updateConfigs({ ['allow-lan']: configs.value?.['allow-lan'] })
+}
+
+const handleFlushDNSCache = async () => {
+  await flushDNSCacheAPI()
+  showNotification({
+    content: 'flushDNSCacheSuccess',
+    type: 'alert-success',
+  })
+}
+
+const handleFlushFakeIP = async () => {
+  await flushFakeIPAPI()
+  showNotification({
+    content: 'flushFakeIPSuccess',
+    type: 'alert-success',
+  })
 }
 </script>

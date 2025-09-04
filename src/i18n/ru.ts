@@ -22,6 +22,11 @@ const ru: LANG_MESSAGE = {
   noContent: 'Нет содержимого',
   flushFakeIP: 'Очистить Fake IP',
   flushDNSCache: 'Очистить DNS кэш',
+  flushDNSCacheSuccess: 'DNS кэш успешно очищен',
+  flushFakeIPSuccess: 'Fake IP успешно очищен',
+  restartCoreSuccess: 'Ядро успешно перезапущено',
+  reloadConfigsSuccess: 'Конфигурации успешно перезагружены',
+  updateGeoSuccess: 'Geo база данных успешно обновлена',
   chains: 'Цепочки',
   outbound: 'Исходящий',
   sortBy: 'Сортировать по',
@@ -224,11 +229,14 @@ const ru: LANG_MESSAGE = {
   copySuccess: 'Копирование успешно',
   importFromBackend: 'Импортировать из бэкенда',
   importFromBackendTip:
-    'По умолчанию ./zashboard-settings.json будет импортировать настройки из папки ui бэкенда, пожалуйста, убедитесь, что файл zashboard-settings.json существует в папке ui, в противном случае импорт не будет выполнен',
+    'По умолчанию ./zashboard-settings.json находится в папке ui. Пожалуйста, убедитесь, что папка ui существует и содержит файл конфигурации.',
   importFailed: 'Импорт не выполнен, проверьте url {url}',
   autoImportFromUrl: 'Автоматический импорт',
   autoImportFromUrlTip:
     'При включении настройки будут автоматически импортироваться из url при открытии zashboard. Если хэш отличается от последнего импортированного хэша, настройки будут импортированы заново и страница будет обновлена.',
+  getting: 'Получение...',
+  mmdbSizeTip: 'Если вы используете mmdb-формат файлов geo, то количество будет равно 0',
+  displayFinalOutbound: 'Показать конечный исходящий узел',
 }
 
 export default ru

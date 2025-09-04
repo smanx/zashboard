@@ -1,5 +1,4 @@
 import { updateProxyProviderAPI } from '@/api'
-import { collapsedBus } from '@/composables/bus'
 import { renderGroups } from '@/composables/proxies'
 import { PROXY_SORT_TYPE, PROXY_TAB_TYPE } from '@/constant'
 import { getMinCardWidth } from '@/helper/utils'
@@ -16,6 +15,7 @@ import {
 import {
   automaticDisconnection,
   collapseGroupMap,
+  displayFinalOutbound,
   groupProxiesByProvider,
   hideUnavailableProxies,
   manageHiddenGroup,
@@ -99,9 +99,9 @@ export default defineComponent({
     })
 
     const handlerClickToggleCollapse = () => {
-      collapsedBus.emit({
-        open: !hasNotCollapsed.value,
-      })
+      collapseGroupMap.value = Object.fromEntries(
+        renderGroups.value.map((name) => [name, !hasNotCollapsed.value]),
+      )
     }
 
     const handlerResetProxyCardWidth = () => {
@@ -277,6 +277,14 @@ export default defineComponent({
                   class="toggle"
                   type="checkbox"
                   v-model={automaticDisconnection.value}
+                />
+              </div>
+              <div class="flex items-center gap-2">
+                {t('displayFinalOutbound')}
+                <input
+                  class="toggle"
+                  type="checkbox"
+                  v-model={displayFinalOutbound.value}
                 />
               </div>
               <div class="flex items-center gap-2">

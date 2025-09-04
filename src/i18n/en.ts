@@ -20,6 +20,11 @@ const en = {
   noContent: 'No Content',
   flushFakeIP: 'Flush Fake IP',
   flushDNSCache: 'Flush DNS Cache',
+  flushDNSCacheSuccess: 'DNS cache flushed successfully',
+  flushFakeIPSuccess: 'Fake IP flushed successfully',
+  restartCoreSuccess: 'Core restarted successfully',
+  reloadConfigsSuccess: 'Configs reloaded successfully',
+  updateGeoSuccess: 'Geo database updated successfully',
   chains: 'Chains',
   outbound: 'Outbound',
   sortBy: 'Sort By',
@@ -222,11 +227,14 @@ const en = {
   copySuccess: 'Copied successfully',
   importFromBackend: 'Import from Backend',
   importFromBackendTip:
-    'The default ./zashboard-settings.json will import settings from the backend ui folder. Please ensure the zashboard-settings.json file exists in the ui folder, otherwise the import will fail.',
+    'The default ./zashboard-settings.json is located in the ui folder. Please ensure the ui folder exists and contains the configuration file.',
   importFailed: 'Import failed, please check the URL: {url}',
   autoImportFromUrl: 'Auto Import',
   autoImportFromUrlTip:
     'When enabled, settings will be automatically imported from the URL when opening zashboard. If the hash differs from the last imported hash, settings will be re-imported and the page will be refreshed.',
+  getting: 'Getting...',
+  mmdbSizeTip: 'If you are using mmdb format geo files, the number will be 0',
+  displayFinalOutbound: 'Show Final Outbound Node',
 }
 
 export type LANG_MESSAGE = typeof en

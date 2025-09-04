@@ -1,7 +1,7 @@
 <template>
   <div
     ref="parentRef"
-    class="flex h-full w-full overflow-y-auto"
+    class="flex h-full w-full overflow-y-auto p-2"
   >
     <div
       :style="{
@@ -19,7 +19,8 @@
           v-for="row in virtualRows"
           :key="row.key.toString()"
           :data-index="row.index"
-          :ref="measureElement"
+          :ref="(ref) => measureElement(ref as Element | null)"
+          class="mb-1"
         >
           <slot
             :item="data[row.index]"
@@ -41,10 +42,12 @@ const props = withDefaults(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any[]
     size?: number
+    overscan?: number
   }>(),
   {
     data: () => [],
     size: 64,
+    overscan: 24,
   },
 )
 const virutalOptions = computed(() => {
@@ -52,7 +55,7 @@ const virutalOptions = computed(() => {
     count: props.data.length,
     getScrollElement: () => parentRef.value,
     estimateSize: () => props.size,
-    overscan: 24,
+    overscan: props.overscan,
   }
 })
 
@@ -61,7 +64,7 @@ const rowVirtualizer = useVirtualizer(virutalOptions)
 const virtualRows = computed(() => rowVirtualizer.value.getVirtualItems())
 const totalSize = computed(() => rowVirtualizer.value.getTotalSize())
 
-const measureElement = (el: Element) => {
+const measureElement = (el: Element | null) => {
   if (!el) {
     return
   }

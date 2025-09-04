@@ -22,6 +22,11 @@ const zh: LANG_MESSAGE = {
   noContent: '无内容',
   flushFakeIP: '清空Fake IP',
   flushDNSCache: '清空DNS缓存',
+  flushDNSCacheSuccess: 'DNS缓存清空成功',
+  flushFakeIPSuccess: 'Fake IP清空成功',
+  restartCoreSuccess: '核心重启成功',
+  reloadConfigsSuccess: '配置重载成功',
+  updateGeoSuccess: 'GEO数据库更新成功',
   chains: '代理链',
   outbound: '出站节点',
   sortBy: '排序方式',
@@ -221,11 +226,14 @@ const zh: LANG_MESSAGE = {
   copySuccess: '复制成功',
   importFromBackend: '从后端导入',
   importFromBackendTip:
-    '默认的./zashboard-settings.json会从后端ui文件夹导入设置，请确保ui文件夹下存在zashboard-settings.json文件，否则会导入失败',
+    '默认的./zashboard-settings.json位于ui文件夹下，导入前请确保ui文件夹下存在配置文件。',
   importFailed: '导入失败，请检查url {url}',
   autoImportFromUrl: '自动导入',
   autoImportFromUrlTip:
     '启用后，每次打开zashboard时会自动从url设置导入并计算hash，如果hash与上次导入的hash不同，则重新导入并刷新页面。',
+  getting: '获取中...',
+  mmdbSizeTip: 'mmdb等格式的geo文件无法统计数量，因此数量为0',
+  displayFinalOutbound: '显示最终出口节点',
 }
 
 export default zh

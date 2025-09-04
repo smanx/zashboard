@@ -1,5 +1,5 @@
-import { useNotification } from '@/composables/notification'
 import { ROUTE_NAME } from '@/constant'
+import { showNotification } from '@/helper/notification'
 import { getUrlFromBackend } from '@/helper/utils'
 import router from '@/router'
 import { autoUpgradeCore, checkUpgradeCore } from '@/store/settings'
@@ -16,6 +16,8 @@ axios.interceptors.request.use((config) => {
   return config
 })
 
+const ignoreNotificationUrls = ['/delay', '/weights']
+
 axios.interceptors.response.use(
   null,
   (
@@ -23,8 +25,6 @@ axios.interceptors.response.use(
       message: string
     }>,
   ) => {
-    const { showNotification } = useNotification()
-
     if (error.status === 401 && activeUuid.value) {
       const currentBackendUuid = activeUuid.value
       activeUuid.value = null
@@ -35,9 +35,12 @@ axios.interceptors.response.use(
       nextTick(() => {
         showNotification({ content: 'unauthorizedTip' })
       })
-    } else if (!error.config?.url?.endsWith('/delay')) {
+    } else if (!ignoreNotificationUrls.some((url) => error.config?.url?.endsWith(url))) {
+      const errorMessage = error.response?.data?.message || error.message
+
       showNotification({
-        content: error.response?.data?.message || error.message,
+        key: errorMessage,
+        content: errorMessage,
         type: 'alert-error',
       })
       return Promise.reject(error)
@@ -104,6 +107,14 @@ export const fetchProxyGroupLatencyAPI = (proxyName: string, url: string, timeou
   })
 }
 
+export const fetchSmartWeightsAPI = () => {
+  return axios.get<{
+    message: string
+    weights: Record<string, Record<string, string>>
+  }>(`/group/weights`)
+}
+
+// deprecated
 export const fetchSmartGroupWeightsAPI = (proxyName: string) => {
   return axios.get<{
     message: string
@@ -317,17 +328,14 @@ export const fetchIsUIUpdateAvailable = async () => {
 }
 
 const check = async (url: string, versionNumber: string) => {
-  const { assets } = await fetchWithLocalCache<{ assets: { name: string }[] }>(
-    `https://api.github.com/repos/MetaCubeX/mihomo${url}`,
-    versionNumber,
-  )
+  const { assets } = await fetchWithLocalCache<{ assets: { name: string }[] }>(url, versionNumber)
   const alreadyLatest = assets.some(({ name }) => name.includes(versionNumber))
 
   return !alreadyLatest
 }
 
 export const fetchBackendUpdateAvailableAPI = async () => {
-  const match = /(alpha|beta|meta)-?(\w+)/.exec(version.value)
+  const match = /(alpha-smart|alpha|beta|meta)-?(\w+)/.exec(version.value)
 
   if (!match) {
     const { tag_name } = await fetchWithLocalCache<{ tag_name: string }>(
@@ -341,8 +349,21 @@ export const fetchBackendUpdateAvailableAPI = async () => {
   const channel = match[1],
     versionNumber = match[2]
 
-  if (channel === 'meta') return await check('/releases/latest', versionNumber)
-  if (channel === 'alpha') return await check('/releases/tags/Prerelease-Alpha', versionNumber)
+  if (channel === 'meta')
+    return await check(
+      'https://api.github.com/repos/MetaCubeX/mihomo/releases/latest',
+      versionNumber,
+    )
+  if (channel === 'alpha')
+    return await check(
+      'https://api.github.com/repos/MetaCubeX/mihomo/releases/tags/Prerelease-Alpha',
+      versionNumber,
+    )
+  if (channel === 'alpha-smart')
+    return await check(
+      'https://api.github.com/repos/vernesong/mihomo/releases/tags/Prerelease-Alpha',
+      versionNumber,
+    )
 
   return false
 }

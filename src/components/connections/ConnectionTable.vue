@@ -191,7 +191,6 @@
 <script setup lang="ts">
 import { disconnectByIdAPI } from '@/api'
 import { useConnections } from '@/composables/connections'
-import { useNotification } from '@/composables/notification'
 import {
   CONNECTION_TAB_TYPE,
   CONNECTIONS_TABLE_ACCESSOR_KEY,
@@ -207,6 +206,7 @@ import {
   getNetworkTypeFromConnection,
   getProcessFromConnection,
 } from '@/helper'
+import { showNotification } from '@/helper/notification'
 import { getIPLabelFromMap } from '@/helper/sourceip'
 import { fromNow, prettyBytesHelper } from '@/helper/utils'
 import { connectionTabShow, renderConnections } from '@/store/connections'
@@ -251,7 +251,7 @@ import { useI18n } from 'vue-i18n'
 import ProxyName from '../proxies/ProxyName.vue'
 
 const { handlerInfo } = useConnections()
-const { showNotification } = useNotification()
+
 const columnWidthMap = useStorage('config/table-column-width', {
   [CONNECTIONS_TABLE_ACCESSOR_KEY.Close]: 50,
   [CONNECTIONS_TABLE_ACCESSOR_KEY.Host]: 320,
@@ -339,7 +339,7 @@ const columns: ColumnDef<Connection>[] = [
       const originChains = row.original.chains
 
       originChains.forEach((chain, index) => {
-        chains.unshift(h(ProxyName, { name: chain, size: 'small', key: chain }))
+        chains.unshift(h(ProxyName, { name: chain, key: chain }))
 
         if (index < originChains.length - 1) {
           chains.unshift(
@@ -354,7 +354,7 @@ const columns: ColumnDef<Connection>[] = [
       return h(
         'div',
         {
-          class: `inline-flex items-center ${proxyChainDirection.value === PROXY_CHAIN_DIRECTION.REVERSE && 'flex-row-reverse justify-end'} gap-1`,
+          class: `flex items-center ${proxyChainDirection.value === PROXY_CHAIN_DIRECTION.REVERSE && 'flex-row-reverse justify-end'} gap-1`,
         },
         chains,
       )
@@ -365,7 +365,7 @@ const columns: ColumnDef<Connection>[] = [
     id: CONNECTIONS_TABLE_ACCESSOR_KEY.Outbound,
     accessorFn: (original) => original.chains[0],
     cell: ({ row }) => {
-      return h(ProxyName, { name: row.original.chains[0], size: 'small' })
+      return h(ProxyName, { name: row.original.chains[0] })
     },
   },
   {
