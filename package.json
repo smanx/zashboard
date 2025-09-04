@@ -43,7 +43,6 @@
     "subsetted-fonts": "^1.0.4",
     "tippy.js": "^6.3.7",
     "uuid": "^11.1.0",
-    "vite-plugin-pwa": "^1.0.2",
     "vue": "^3.5.18",
     "vue-i18n": "^11.1.11",
     "vue-json-pretty": "^2.5.0",
@@ -73,6 +72,7 @@
     "tailwindcss": "^4.1.11",
     "typescript": "~5.9.2",
     "vite": "^7.0.6",
+    "vite-plugin-pwa": "^1.0.2",
     "vue-tsc": "^3.0.4"
   },
   "packageManager": "pnpm@9.12.1"
